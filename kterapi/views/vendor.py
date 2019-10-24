@@ -19,18 +19,32 @@ class VendorSerializer(serializers.HyperlinkedModelSerializer):
             view_name='vendor',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'company_name', 'phone', 'city', 'bio', 'user_id')
+        fields = ('id', 'url', 'company_name', 'phone', 'city', 'bio', 'user')
 
 
 class Vendors(ViewSet):
     """Vendors for KTER"""
+    def retrieve(self, request, pk=None):
+        try:
+            vendor = Vendor.objects.get(pk=pk)
+            serializer = VendorSerializer(vendor, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
+    def create(self, request):
+        vendor = Vendor()
+        vendor.phone = request.data["phone"]
+        vendor.address = request.data["address"]
+        user = Vendor.objects.get(user=request.auth.user)
+        vendor.user = user
+
+        vendor.save()
+        serializer = VendorSerializer(vendor, context={'request': request})
+
+        return Response(serializer.data)
 
     def list(self, request):
-        """Handle GET requests to vendor resource
-
-        Returns:
-            Response -- JSON serialized list of vendors
-        """
         vendors = Vendor.objects.all()
         serializer = VendorSerializer(
             vendors,
