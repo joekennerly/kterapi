@@ -1,0 +1,9 @@
+[
+    {
+        "model": "kterapi.productcategory",
+        "pk": 1,
+        "fields": {
+            "name": "Salad"
+        }
+    }
+]

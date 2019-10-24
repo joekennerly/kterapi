@@ -1,0 +1,13 @@
+[
+    {
+        "model": "kterapi.product",
+        "pk": 1,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 1,
+            "name": "Kale Salad",
+            "price": 14.99,
+            "description": "tastes good, very healthy"
+        }
+    }
+]
