@@ -1,0 +1,28 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$Pg9GnXIWid2J$RDppMN6suSFFlU/H2GjdiKoX1QOM+Ihozo5EjFswpN8=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "joe",
+            "first_name": "joe",
+            "last_name": "kennerly",
+            "email": "joe@kter.com",
+            "is_staff": false,
+            "is_active": true, "date_joined": "2019-09-23T14:06:30.047Z"
+        }
+    },
+    {
+        "model": "kterapi.vendor",
+        "pk": 1,
+        "fields": {
+            "phone": "111-111-1111",
+            "company_name": "Pizza Boyz",
+            "city": "Nashville",
+            "bio": "I am the joe",
+            "user": 1
+        }
+    }
+]
