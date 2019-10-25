@@ -43,13 +43,12 @@ INSTALLED_APPS = [
     'kterapi',
 ]
 
-# Allow all permissions, for now
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10
@@ -68,7 +67,9 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
-    'http://127.0.0.1:8000'
+    'http://127.0.0.1:8000',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000'
 )
 
 ROOT_URLCONF = 'kter.urls'

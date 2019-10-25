@@ -1,0 +1,12 @@
+[
+    {
+        "model": "kterapi.payment",
+        "pk": 1,
+        "fields": {
+            "customer": 1,
+            "merchant_name": "Visa",
+            "account_number": "1111-1111-1111",
+            "expiration": "2020-01-01"
+        }
+    }
+]

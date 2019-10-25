@@ -1,0 +1,10 @@
+[
+    {
+        "model": "kterapi.favorite",
+        "pk": 1,
+        "fields": {
+            "vendor": 1,
+            "customer": 1
+        }
+    }
+]

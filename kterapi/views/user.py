@@ -5,7 +5,6 @@ from rest_framework import serializers
 from rest_framework import status
 from django.contrib.auth.models import User
 
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for Users"""
     class Meta:
@@ -15,7 +14,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field = 'id'
         )
         fields = ('id', 'url', 'username', 'password', 'first_name', 'last_name', 'email', 'is_active', 'date_joined')
-
 
 class Users(ViewSet):
     def retrieve(self, request, pk=None):
