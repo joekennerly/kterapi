@@ -6,7 +6,7 @@ from kterapi.views import Vendors, register_user, login_user, ProductCategories
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'vendor', Vendors, 'vendor')
-router.register(r'productcategory', ProductCategories, 'productcategories')
+router.register(r'productcategory', ProductCategories, 'productcategory')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

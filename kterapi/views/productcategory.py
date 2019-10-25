@@ -6,9 +6,8 @@ from rest_framework import serializers
 from rest_framework import status
 from kterapi.models import ProductCategory
 
-
 class ProductCategorySerializer(serializers.HyperlinkedModelSerializer):
-    """JSON serializer for product categories
+    """JSON serializer for product category
     Arguments:
         serializers
     """
@@ -20,20 +19,19 @@ class ProductCategorySerializer(serializers.HyperlinkedModelSerializer):
         )
         fields = ('id', 'url', 'name')
 
-
 class ProductCategories(ViewSet):
-    """Product Categories for KTER"""
+    """Product categories for Bangazon"""
 
     def create(self, request):
         """Handle POST operations
         Returns:
-            Response -- JSON serialized product category instance
+            Response -- JSON serialized product_category instance
         """
-        category = ProductCategory()
-        category.name = request.data["name"]
-        category.save()
+        new_category = ProductCategory()
+        new_category.name = request.data["name"]
+        new_category.save()
 
-        serializer = ProductCategorySerializer(category, context={'request': request})
+        serializer = ProductCategorySerializer(new_category, context={'request': request})
 
         return Response(serializer.data)
 
@@ -48,6 +46,34 @@ class ProductCategories(ViewSet):
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
+
+    def update(self, request, pk=None):
+        """Handle PUT requests for an category
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        new_category = ProductCategory.objects.get(pk=pk)
+        new_category.name = request.data["name"]
+        new_category.save()
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single category
+        Returns:
+            Response -- 200, 404, or 500 status code
+        """
+        try:
+            category = ProductCategory.objects.get(pk=pk)
+            category.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except ProductCategory.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
         """Handle GET requests to Product Category resource
