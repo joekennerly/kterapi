@@ -11,7 +11,8 @@
             "last_name": "kennerly",
             "email": "joe@kter.com",
             "is_staff": false,
-            "is_active": true, "date_joined": "2019-09-23T14:06:30.047Z"
+            "is_active": true,
+            "date_joined": "2019-09-23T14:06:30.047Z"
         }
     },
     {
