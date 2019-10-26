@@ -20,7 +20,7 @@ class ProductCategorySerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'name')
 
 class ProductCategories(ViewSet):
-    """Product categories for Bangazon"""
+    """Product categories for KTER"""
 
     def create(self, request):
         """Handle POST operations
