@@ -14,7 +14,7 @@ class PaymentSerializer(serializers.HyperlinkedModelSerializer):
             view_name='payment',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'customer', 'merchant_name', 'account_name', 'expiration')
+        fields = ('id', 'url', 'customer', 'merchant_name', 'account_number', 'expiration')
 
 class Payments(ViewSet):
     """Payments for KTER"""
