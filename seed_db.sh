@@ -11,3 +11,5 @@ python manage.py loaddata productcategory
 python manage.py loaddata product
 python manage.py loaddata favorite
 python manage.py loaddata payment
+python manage.py loaddata order
+python manage.py loaddata orderproduct
