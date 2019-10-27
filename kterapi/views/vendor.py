@@ -19,6 +19,19 @@ class VendorSerializer(serializers.HyperlinkedModelSerializer):
 
 class Vendors(ViewSet):
     """Vendors for KTER"""
+    def retrieve(self, request, pk=None):
+        try:
+            vendor = Vendor.objects.get(pk=pk)
+            serializer = VendorSerializer(vendor, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
+    def list(self, request):
+        vendor = Vendor.objects.all()
+        serializer = VendorSerializer(
+            vendor, many=True, context={'request': request})
+        return Response(serializer.data)
     def update(self, request, pk=None):
         vendor = Vendor.objects.get(user=request.auth.user)
         vendor.user.first_name = request.data["first_name"]
