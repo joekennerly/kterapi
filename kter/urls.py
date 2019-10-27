@@ -8,6 +8,7 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'vendor', Vendors, 'vendor')
 router.register(r'productcategory', ProductCategories, 'productcategory')
 router.register(r'product', Products, 'product')
+router.register(r'order', Orders, 'order')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
