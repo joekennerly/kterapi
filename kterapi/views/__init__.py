@@ -3,3 +3,5 @@ from .vendor import Vendors
 from .productcategory import ProductCategories
 from .product import Products
 from .order import Orders
+from .customer import Customers
+from .payment import Payments
