@@ -5,11 +5,12 @@ from kterapi.models import *
 from kterapi.views import *
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'user', Users, 'user')
 router.register(r'vendor', Vendors, 'vendor')
-router.register(r'productcategory', ProductCategories, 'productcategory')
-router.register(r'product', Products, 'product')
-router.register(r'order', Orders, 'order')
 router.register(r'customer', Customers, 'customer')
+router.register(r'product', Products, 'product')
+router.register(r'category', ProductCategories, 'productcategory')
+router.register(r'order', Orders, 'order')
 router.register(r'payment', Payments, 'payment')
 
 urlpatterns = [

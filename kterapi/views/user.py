@@ -25,7 +25,7 @@ class Users(ViewSet):
             return HttpResponseServerError(ex)
 
     def list(self, request):
-        users = Users.objects.all()
+        users = User.objects.all()
         serializer = UserSerializer(
             users, many=True, context={'request': request})
         return Response(serializer.data)
