@@ -12,7 +12,7 @@ class Order(models.Model):
     location! - Must have a location for the event
     """
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
-    payment = models.ForeignKey(Payment, on_delete=models.DO_NOTHING, blank=True, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.DO_NOTHING, null=True)
     start = models.DateTimeField()
     end = models.DateTimeField()
     location = models.CharField(max_length=50)
