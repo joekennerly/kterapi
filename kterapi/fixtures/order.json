@@ -4,7 +4,6 @@
         "pk": 1,
         "fields": {
             "vendor": 1,
-            "customer": 1,
             "payment": null,
             "start": "2019-10-10T23:41:08.334Z",
             "end": "2019-10-11T23:41:08.334Z",

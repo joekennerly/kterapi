@@ -4,7 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from kterapi.models import Order, Vendor, Customer, Payment
+from kterapi.models import Order, Vendor, Payment
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for orders"""
@@ -14,7 +14,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'vendor', 'customer', 'payment', 'start', 'end', 'location')
+        fields = ('id', 'url', 'vendor', 'payment', 'start', 'end', 'location')
 
 class Orders(ViewSet):
     """Orders for KTER"""
@@ -24,10 +24,6 @@ class Orders(ViewSet):
 
         vendor = Vendor.objects.get(user=request.auth.user)
         order.vendor = vendor
-
-        customer = Customer.objects.get(
-            pk=request.data['customer_id'])
-        order.customer = customer
 
         payment = Payment.objects.get(
             pk=request.data['payment_id'])
@@ -55,10 +51,6 @@ class Orders(ViewSet):
 
         vendor = Vendor.objects.get(user=request.auth.user)
         order.vendor = vendor
-
-        customer = Customer.objects.get(
-            pk=request.data['customer_id'])
-        order.customer = customer
 
         payment = Payment.objects.get(
             pk=request.data['payment_id'])
