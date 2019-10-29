@@ -25,9 +25,9 @@ class Orders(ViewSet):
         vendor = Vendor.objects.get(user=request.auth.user)
         order.vendor = vendor
 
-        payment = Payment.objects.get(
-            pk=request.data['payment_id'])
-        order.payment = payment
+        # payment = Payment.objects.get(
+        #     pk=request.data['payment_id'])
+        # order.payment = payment
 
         order.start = request.data["start"]
         order.end = request.data["end"]
