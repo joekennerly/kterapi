@@ -28,10 +28,13 @@ class Vendors(ViewSet):
             return HttpResponseServerError(ex)
 
     def list(self, request):
-        vendor = Vendor.objects.all()
+
+        vendors = Vendor.objects.all()
+
         serializer = VendorSerializer(
-            vendor, many=True, context={'request': request})
+            vendors, many=True, context={'request': request})
         return Response(serializer.data)
+
     def update(self, request, pk=None):
         vendor = Vendor.objects.get(user=request.auth.user)
         vendor.user.first_name = request.data["first_name"]

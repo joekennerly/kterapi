@@ -9,5 +9,16 @@
             "price": 14.99,
             "description": "tastes good, very healthy"
         }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 2,
+        "fields": {
+            "vendor": 2,
+            "productcategory": 1,
+            "name": "Kale Salad",
+            "price": 14.99,
+            "description": "tastes good, very healthy"
+        }
     }
 ]
