@@ -4,7 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from kterapi.models import Order, Vendor, Payment
+from kterapi.models import Order, Vendor, Payment, Customer
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for orders"""
@@ -14,7 +14,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'vendor', 'payment', 'start', 'end', 'location')
+        fields = ('id', 'url', 'vendor', 'customer', 'payment', 'start', 'end', 'location')
 
 class Orders(ViewSet):
     """Orders for KTER"""
@@ -25,9 +25,9 @@ class Orders(ViewSet):
         vendor = Vendor.objects.get(user=request.auth.user)
         order.vendor = vendor
 
-        # payment = Payment.objects.get(
-        #     pk=request.data['payment_id'])
-        # order.payment = payment
+        customer = Customer.objects.get(
+            pk=request.data['customer_id'])
+        order.customer = customer
 
         order.start = request.data["start"]
         order.end = request.data["end"]
@@ -56,6 +56,10 @@ class Orders(ViewSet):
             pk=request.data['payment_id'])
         order.payment = payment
 
+        customer = Customer.objects.get(
+            pk=request.data['customer_id'])
+        order.customer = customer
+
         order.start = request.data["start"]
         order.end = request.data["end"]
         order.location = request.data["location"]
@@ -77,6 +81,7 @@ class Orders(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
+        #Will need to refactor to filter orders by customer for the customer detail page
         order = Order.objects.all()
 
         serializer = OrderSerializer(
