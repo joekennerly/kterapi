@@ -23,10 +23,10 @@ class Products(ViewSet):
         product = Product()
 
         vendor = Vendor.objects.get(user=request.auth.user)
+        product.vendor = vendor
         productcategory = ProductCategory.objects.get(
             pk=request.data['productcategory_id'])
 
-        product.vendor = vendor
         product.productcategory = productcategory
         product.name = request.data["name"]
         product.price = request.data["price"]
@@ -75,8 +75,13 @@ class Products(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        product = Product.objects.all()
+        products = Product.objects.all()
+        product = self.request.query_params.get('vendor', None)
+
+        current_vendor = Vendor.objects.get(user=request.auth.user)
+        if product == 'current':
+            products = products.filter(vendor=current_vendor)
 
         serializer = ProductSerializer(
-            product, many=True, context={'request': request})
+            products, many=True, context={'request': request})
         return Response(serializer.data)

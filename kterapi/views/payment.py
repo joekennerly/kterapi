@@ -70,8 +70,13 @@ class Payments(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        payment = Payment.objects.all()
+        payments = Payment.objects.all()
+
+        customer = self.request.query_params.get('customer_id', None)
+
+        if customer is not None:
+            payments = payments.filter(customer__id=customer)
 
         serializer = PaymentSerializer(
-            payment, many=True, context={'request': request})
+            payments, many=True, context={'request': request})
         return Response(serializer.data)

@@ -25,5 +25,32 @@
             "bio": "I am the joe",
             "user": 1
         }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$KoE1M1PTt6f6$HdNgtnN5mbbfYkWfywUwVFgW71TMjPcrBrHZ9ZBfgpg=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "jim",
+            "first_name": "joe",
+            "last_name": "kennerly",
+            "email": "joe@kter.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2019-09-23T14:06:30.047Z"
+        }
+    },
+    {
+        "model": "kterapi.vendor",
+        "pk": 2,
+        "fields": {
+            "phone": "111-111-1111",
+            "company_name": "Burger Boyz",
+            "city": "Nashville",
+            "bio": "I am the burger",
+            "user": 2
+        }
     }
 ]
