@@ -29,7 +29,7 @@ class Vendors(ViewSet):
 
     def list(self, request):
 
-        vendors = Vendor.objects.all()
+        vendors = Vendor.objects.filter(user=request.auth.user)
 
         serializer = VendorSerializer(
             vendors, many=True, context={'request': request})
