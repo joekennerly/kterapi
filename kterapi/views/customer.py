@@ -4,7 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from kterapi.models import Customer
+from kterapi.models import Customer, Vendor
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for customers"""
@@ -14,13 +14,15 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
             view_name='customer',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'name', 'phone', 'city')
+        fields = ('id', 'url', 'vendor', 'name', 'phone', 'city')
 
 class Customers(ViewSet):
     """Customers for KTER"""
     def create(self, request):
         customer = Customer()
 
+        vendor = Vendor.objects.get(user=request.auth.user)
+        customer.vendor = vendor
         customer.name = request.data["name"]
         customer.phone = request.data["phone"]
         customer.city = request.data["city"]
@@ -40,6 +42,9 @@ class Customers(ViewSet):
 
     def update(self, request, pk=None):
         customer = Customer.objects.get(pk=pk)
+
+        vendor = Vendor.objects.get(user=request.auth.user)
+        customer.vendor = vendor
         customer.name = request.data["name"]
         customer.city = request.data["city"]
         customer.phone = request.data["phone"]
@@ -61,8 +66,14 @@ class Customers(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        customer = Customer.objects.all()
+        customers = Customer.objects.all()
+
+        customer = self.request.query_params.get('vendor', None)
+
+        current_vendor = Vendor.objects.get(user=request.auth.user)
+        if customer == 'current':
+            customers = customers.filter(vendor=current_vendor)
 
         serializer = CustomerSerializer(
-            customer, many=True, context={'request': request})
+            customers, many=True, context={'request': request})
         return Response(serializer.data)
