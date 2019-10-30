@@ -81,9 +81,12 @@ class Orders(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        #Will need to refactor to filter orders by customer for the customer detail page
-        order = Order.objects.all()
+        orders = Order.objects.all()
+        customer = self.request.query_params.get('customer_id', None)
+
+        if customer is not None:
+            orders = orders.filter(customer__id=customer)
 
         serializer = OrderSerializer(
-            order, many=True, context={'request': request})
+            orders, many=True, context={'request': request})
         return Response(serializer.data)
