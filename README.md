@@ -3,12 +3,6 @@
 Built with Django REST Framework
 to serve data to the [React Client](https://github.com/joekennerly/kterclient)
 
-## Index
----
-0. [Getting Started](https://github.com/joekennerly/kterapi)
-1. [Create Virtual Environment](https://github.com/joekennerly/kterapi)
----
-
 ## 0. Getting Started
 To contribute to this project, you will need the following:
 * Bash Terminal
@@ -21,7 +15,7 @@ Once you've cloned the repo, cd into it and run this command from your terminal:
 ```
 python -m venv KterEnv
 ```
->Windows Users: this can be run in GitBash or Command Line
+>Windows Users can run this in GitBash or Command Line
 
 Start your virtual environment by running one of the following commands:
 * Mac: `source ./KterEnv/bin/activate`
@@ -33,11 +27,11 @@ pip install -r requirements.txt
 ```
 
 ## 3. Initial Migrations
-Now that the project is ready, we need to setup the database. Lucky for us, all of this is done by running a shell script:
+Now that the project is ready, we need to setup the database. Lucky for us, all of this is done by running a shell script *in a bash terminal*:
 ```
 ./seed_db.sh
 ```
->Close **all** connections to the database if you need to reset the db
+>>> If you ever need to reset the database with new migrations. **Close all connections** to the db before doing so!
 
 ## 4. Start up the server
 ```
