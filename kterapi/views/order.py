@@ -76,9 +76,12 @@ class Orders(ViewSet):
     def list(self, request):
         orders = Order.objects.all()
         customer = self.request.query_params.get('customer_id', None)
+        payment = self.request.query_params.get('payment', None)
 
         if customer is not None:
             orders = orders.filter(customer__id=customer)
+        elif payment is not None:
+            orders = orders.filter(payment__id__gte=1)
 
         serializer = OrderSerializer(
             orders, many=True, context={'request': request})
