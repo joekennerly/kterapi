@@ -66,8 +66,13 @@ class OrderProducts(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        orderproduct = OrderProduct.objects.all()
+        orderproducts = OrderProduct.objects.all()
+
+        order = self.request.query_params.get('order_id', None)
+
+        if order is not None:
+            orderproducts = orderproducts.filter(order__id=order)
 
         serializer = OrderProductSerializer(
-            orderproduct, many=True, context={'request': request})
+            orderproducts, many=True, context={'request': request})
         return Response(serializer.data)
