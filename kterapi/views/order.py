@@ -56,13 +56,6 @@ class Orders(ViewSet):
             pk=request.data['payment_id'])
         order.payment = payment
 
-        customer = Customer.objects.get(
-            pk=request.data['customer_id'])
-        order.customer = customer
-
-        order.start = request.data["start"]
-        order.end = request.data["end"]
-        order.location = request.data["location"]
         order.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
