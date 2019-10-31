@@ -14,7 +14,8 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'vendor', 'customer', 'payment', 'start', 'end', 'location')
+        fields = ('id', 'url', 'vendor', 'customer', 'customer_id', 'payment', 'start', 'end', 'location')
+        depth=1
 
 class Orders(ViewSet):
     """Orders for KTER"""
@@ -56,13 +57,6 @@ class Orders(ViewSet):
             pk=request.data['payment_id'])
         order.payment = payment
 
-        customer = Customer.objects.get(
-            pk=request.data['customer_id'])
-        order.customer = customer
-
-        order.start = request.data["start"]
-        order.end = request.data["end"]
-        order.location = request.data["location"]
         order.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
@@ -83,9 +77,12 @@ class Orders(ViewSet):
     def list(self, request):
         orders = Order.objects.all()
         customer = self.request.query_params.get('customer_id', None)
+        payment = self.request.query_params.get('payment', None)
 
         if customer is not None:
             orders = orders.filter(customer__id=customer)
+        elif payment is not None:
+            orders = orders.filter(payment__id__gte=1)
 
         serializer = OrderSerializer(
             orders, many=True, context={'request': request})

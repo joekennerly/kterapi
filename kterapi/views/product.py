@@ -14,7 +14,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             view_name='product',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'name', 'vendor', 'productcategory', 'price', 'description')
+        fields = ('id', 'url', 'name', 'vendor', 'productcategory', 'productcategory_id', 'price', 'description')
 
 class Products(ViewSet):
     """Products for KTER"""
