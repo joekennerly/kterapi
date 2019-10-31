@@ -13,6 +13,7 @@ class OrderProductSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'order', 'product')
+        depth=1
 
 class OrderProducts(ViewSet):
     def create(self, request):
