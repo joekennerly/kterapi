@@ -5,9 +5,21 @@
         "fields": {
             "vendor": 1,
             "customer": 1,
-            "payment": null,
+            "payment": 1,
             "start": "2019-10-10T23:41:08.334Z",
             "end": "2019-10-11T23:41:08.334Z",
+            "location": "Nashville"
+        }
+    },
+    {
+        "model": "kterapi.order",
+        "pk": 2,
+        "fields": {
+            "vendor": 1,
+            "customer": 1,
+            "payment": null,
+            "start": "2019-10-13T23:41:08.334Z",
+            "end": "2019-10-14T23:41:08.334Z",
             "location": "Nashville"
         }
     }
