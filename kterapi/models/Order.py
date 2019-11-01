@@ -15,7 +15,7 @@ class Order(models.Model):
     """
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    payment = models.ForeignKey(Payment, on_delete=models.DO_NOTHING, blank=True, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE, blank=True, null=True)
     start = models.DateTimeField()
     end = models.DateTimeField()
     location = models.CharField(max_length=50)
