@@ -3,9 +3,29 @@
         "model": "kterapi.customer",
         "pk": 1,
         "fields": {
-            "name": "John",
+            "name": "John Ham",
             "vendor": 1,
-            "phone": "111-111-1111",
+            "phone": "355-011-6483",
+            "city": "Nashville"
+        }
+    },
+    {
+        "model": "kterapi.customer",
+        "pk": 2,
+        "fields": {
+            "name": "Tina Turkey",
+            "vendor": 1,
+            "phone": "355-491-6288",
+            "city": "Nashville"
+        }
+    },
+    {
+        "model": "kterapi.customer",
+        "pk": 3,
+        "fields": {
+            "name": "Barbara Beef",
+            "vendor": 1,
+            "phone": "355-686-2191",
             "city": "Nashville"
         }
     }

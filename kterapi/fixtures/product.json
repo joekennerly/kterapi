@@ -7,18 +7,117 @@
             "productcategory": 1,
             "name": "Kale Salad",
             "price": 14.99,
-            "description": "tastes good, very healthy"
+            "description": "feeds 4-5"
         }
     },
     {
         "model": "kterapi.product",
         "pk": 2,
         "fields": {
-            "vendor": 2,
+            "vendor": 1,
             "productcategory": 1,
-            "name": "Kale Salad",
+            "name": "Chicken Salad",
             "price": 14.99,
-            "description": "tastes good, very healthy"
+            "description": "feeds 4-5"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 3,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 1,
+            "name": "Caesar Salad",
+            "price": 12.99,
+            "description": "feeds 4-5"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 4,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 1,
+            "name": "Tossed Salad",
+            "price": 12.99,
+            "description": "feeds 4-5"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 5,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 2,
+            "name": "Pepperoni Pizza",
+            "price": 21.99,
+            "description": "feeds 4-5"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 6,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 2,
+            "name": "Cheese Pizza",
+            "price": 19.99,
+            "description": "feeds 4-5"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 7,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 2,
+            "name": "Taco Pizza",
+            "price": 19.99,
+            "description": "feeds 4-5"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 8,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 2,
+            "name": "Sausage Pizza",
+            "price": 19.99,
+            "description": "feeds 4-5"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 9,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 8,
+            "name": "Meatball Hoagie",
+            "price": 8.99,
+            "description": "meal for 1"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 10,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 8,
+            "name": "Turkey Hoagie",
+            "price": 8.99,
+            "description": "meal for 1"
+        }
+    },
+    {
+        "model": "kterapi.product",
+        "pk": 11,
+        "fields": {
+            "vendor": 1,
+            "productcategory": 8,
+            "name": "Grilled Chicken Club",
+            "price": 9.99,
+            "description": "meal for 1"
         }
     }
 ]

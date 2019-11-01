@@ -5,5 +5,54 @@
         "fields": {
             "name": "Salad"
         }
+    },
+    {
+        "model": "kterapi.productcategory",
+        "pk": 2,
+        "fields": {
+            "name": "Pizza"
+        }
+    },
+    {
+        "model": "kterapi.productcategory",
+        "pk": 3,
+        "fields": {
+            "name": "BBQ"
+        }
+    },
+    {
+        "model": "kterapi.productcategory",
+        "pk": 4,
+        "fields": {
+            "name": "Cookie"
+        }
+    },
+    {
+        "model": "kterapi.productcategory",
+        "pk": 5,
+        "fields": {
+            "name": "Pie"
+        }
+    },
+    {
+        "model": "kterapi.productcategory",
+        "pk": 6,
+        "fields": {
+            "name": "Hot Chicken"
+        }
+    },
+    {
+        "model": "kterapi.productcategory",
+        "pk": 7,
+        "fields": {
+            "name": "Burgers"
+        }
+    },
+    {
+        "model": "kterapi.productcategory",
+        "pk": 8,
+        "fields": {
+            "name": "Sandwiches"
+        }
     }
 ]
