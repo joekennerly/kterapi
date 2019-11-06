@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from kterapi.models import Order, Vendor, Payment, Customer
+from datetime import date
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for orders"""
@@ -75,14 +76,18 @@ class Orders(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        orders = Order.objects.all()
+        today = date.today()
+        orders = Order.objects.all().order_by('start')
         customer = self.request.query_params.get('customer_id', None)
         payment = self.request.query_params.get('payment', None)
+        current = self.request.query_params.get('current', None)
 
         if customer is not None:
             orders = orders.filter(customer__id=customer)
         elif payment is not None:
             orders = orders.filter(payment__id__gte=1)
+        elif current is not None:
+            orders = orders.filter(start__gte=today)
 
         serializer = OrderSerializer(
             orders, many=True, context={'request': request})
