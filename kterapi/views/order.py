@@ -78,11 +78,21 @@ class Orders(ViewSet):
         orders = Order.objects.all()
         customer = self.request.query_params.get('customer_id', None)
         payment = self.request.query_params.get('payment', None)
+        order_by = self.request.query_params.get('order_by', None)
+        direction = self.request.query_params.get('direction', None)
 
         if customer is not None:
             orders = orders.filter(customer__id=customer)
         elif payment is not None:
             orders = orders.filter(payment__id__gte=1)
+        elif order_by is not None:
+            filter = order_by
+
+            if direction is not None:
+                if direction == "desc":
+                    filter = f'-{filter}'
+
+            orders = orders.order_by(filter)
 
         serializer = OrderSerializer(
             orders, many=True, context={'request': request})
