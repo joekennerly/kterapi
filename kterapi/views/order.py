@@ -76,11 +76,21 @@ class Orders(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
+        # orders = Order.objects.all()
+        # order = self.request.query_params.get('vendor', None)
+
+        # current_vendor = Vendor.objects.get(user=request.auth.user)
+        # if order == 'current':
+        #     orders = orders.filter(vendor=current_vendor)
+
+
         today = date.today()
         orders = Order.objects.all().order_by('start')
         customer = self.request.query_params.get('customer_id', None)
         payment = self.request.query_params.get('payment', None)
         current = self.request.query_params.get('current', None)
+        current_vendor = Vendor.objects.get(user=request.auth.user)
+        orders = orders.filter(vendor=current_vendor)
 
         if customer is not None:
             orders = orders.filter(customer__id=customer)
@@ -88,6 +98,7 @@ class Orders(ViewSet):
             orders = orders.filter(payment__id__gte=1)
         elif current is not None:
             orders = orders.filter(start__gte=today)
+
 
         serializer = OrderSerializer(
             orders, many=True, context={'request': request})
