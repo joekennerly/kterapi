@@ -76,13 +76,6 @@ class Orders(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        # orders = Order.objects.all()
-        # order = self.request.query_params.get('vendor', None)
-
-        # current_vendor = Vendor.objects.get(user=request.auth.user)
-        # if order == 'current':
-        #     orders = orders.filter(vendor=current_vendor)
-
 
         today = date.today()
         orders = Order.objects.all().order_by('start')
